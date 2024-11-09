@@ -65,6 +65,28 @@ Se necesita poder filtrar en el endpoint de listado por serie, número y por un 
 
 **Nota**: En todos los casos de nuevas funcionalidades, se tratan de comprobantes por usuarios.
 
+## Funcionalidades implementadas
+
+### 1. Registro de serie, número, tipo del comprobante y moneda
+
+Se creo una migracion adicional para crear los nuevos campos de la tabla vouchers y se creo una endpoint para actualizar los registros con esos nuevos campos.
+
+### 2. Carga de comprobantes en segundo plano
+
+Se creo un Job para el procesamiento y se reemplazo en el service, se cambio las variables de entorno para el corecto funcionanmiento atravez de database y se incorporo nuevo parametro para los errores de los vouchers que no se lograron crear capturando el error en un trycatch, previamente en el service se capturan solo archivos xml para evitar procesamientos innecesarios.
+
+### 3. Endpoint de montos totales
+
+Se creo una constante para defiinir las diferentes divisas y el tipo de cambio a una divisas destino, usando una funcion donde se usara por parametro la divisa destino para obtener el monto total en la respectiva divisa y para este caso se obtuvo en dolares y soles.
+
+### 4. Eliminación de comprobantes
+
+Se necesita pasar el valor del id del voucher para eliminar el registro, se capturan errores usando trycatch.
+
+### 5. Filtro en listado de comprobantes
+
+Se crearon neuvos parametros opccionales para filtrar los distintos campos que se mencionaron, en caso de las fechas se considera pasar ambas para obtener registros de ese rango de tiempo.
+
 ## Consideraciones
 
 -   Se valorará el uso de código limpio, estándares, endpoints optimizados, tolerancia a fallos y concurrencia.
